@@ -131,9 +131,10 @@ namespace Swed32
             foreach (var offset in offsets)
             {
                 ReadProcessMemory(proc.Handle, addy + offset, buffer, buffer.Length, IntPtr.Zero);
+                addy = (IntPtr)BitConverter.ToInt32(buffer);
             }
 
-            return (IntPtr)BitConverter.ToInt32(buffer);
+            return addy;
         }
 
         #region ReadPointer overloads
